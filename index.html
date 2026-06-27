@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tsholo's Atchar Co - Wholesale Catalog</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+:root{--bg:#fff8f0;--card:#ffffff;--accent:#c2410c;--accent-dark:#9a3412;--green:#16a34a;--red:#dc2626;--blue:#1e40af;--purple:#7c3aed;--text:#1f2937;--muted:#78716c;--border:#fed7aa;--shadow:0 1px 3px rgba(0,0,0,0.08), 0 10px 25px rgba(0,0,0,0.05);--shadow-lg:0 10px 40px rgba(194,65,12,0.15);--gradient:linear-gradient(135deg,#ea580c 0%,#c2410c 100%);}*{box-sizing:border-box}body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:var(--bg);color:var(--text);margin:0;padding:0;padding-bottom:280px;-webkit-font-smoothing:antialiased;}.header{background:var(--gradient);color:white;padding:25px 15px;text-align:center;position:relative;box-shadow:var(--shadow-lg);}.logo{width:90px;height:90px;border-radius:50%;background:white;padding:6px;margin:0 auto 12px;border:3px solid rgba(255,255,255,0.3);object-fit:cover;box-shadow:0 8px 20px rgba(0,0,0,0.2);}.header h1{margin:0;font-size:24px;font-weight:700;letter-spacing:-0.5px;}.header p{margin:8px 0 0;font-size:13px;opacity:0.9;font-weight:400;}.container{padding:20px 15px 240px 15px;max-width:1000px;margin:0 auto}.card{background:var(--card);border-radius:16px;padding:16px;margin:14px 0;box-shadow:var(--shadow);position:relative;border:1px solid var(--border);transition:all 0.3s}.card.oos{opacity:0.4;filter:grayscale(0.5)}.card.oos::after{content:'OUT OF STOCK';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-12deg);background:var(--red);color:white;padding:10px 24px;font-weight:700;border-radius:8px;font-size:14px;z-index:10;box-shadow:0 4px 12px rgba(220,38,38,0.4);letter-spacing:1px;}.card img{width:100%;height:200px;object-fit:cover;border-radius:12px;margin-bottom:12px;border:1px solid var(--border);}.card h3{margin:8px 0;color:var(--accent);font-size:17px;font-weight:700;}.price{font-size:20px;font-weight:700;color:var(--green);}.old-price{text-decoration:line-through;color:var(--muted);font-size:13px;margin-left:6px;}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}.btn{background:var(--gradient);color:white;border:none;padding:12px 18px;border-radius:10px;font-weight:600;cursor:pointer;width:100%;margin-top:10px;}.btn:disabled{background:var(--muted);cursor:not-allowed}.btn-green{background:var(--green)}.btn-red{background:var(--red)}.btn-blue{background:var(--blue)}.btn-secondary{background:#475569;font-size:13px;box-shadow:none}.btn-whatsapp{background:linear-gradient(135deg,#25D366,#128C7E)}.admin-panel{background:linear-gradient(135deg,#fff7ed,#ffedd5);padding:16px;border-radius:12px;margin:18px 0;border:2px dashed var(--accent);}.toggle-btn{background:#64748b;color:white;border:none;padding:5px 10px;border-radius:6px;font-size:11px;cursor:pointer;margin-left:5px;display:inline-block;font-weight:600;}.qty-input{width:70px;padding:6px 8px;border:1px solid var(--border);border-radius:8px;text-align:center;margin:0 6px;font-weight:600;font-size:14px;}input[type="text"],input[type="email"],input[type="password"],input[type="tel"]{width:100%;padding:10px 12px;margin:6px 0;border:1px solid var(--border);border-radius:10px;font-size:14px;}textarea{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:10px;font-size:14px;}.sync-status{position:fixed;top:80px;right:12px;z-index:999;background:var(--green);color:white;padding:7px 12px;border-radius:20px;font-size:11px;font-weight:600;}.cart{position:fixed;bottom:0;left:0;right:0;background:var(--card);padding:16px;border-top:3px solid var(--accent);box-shadow:0 -4px 20px rgba(0,0,0,0.12);max-height:320px;overflow-y:auto;display:none;}.cart-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;font-weight:600;}.cart-total{font-size:22px;font-weight:700;color:var(--green);margin:12px 0;}.cart-item{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;border-bottom:1px solid var(--border);font-size:13px;background:#fff7ed;border-radius:8px;margin-bottom:6px;}.copy-box{display:flex;gap:6px;margin-top:10px}.copy-box input{flex:1;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;}
+.modal{position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:1000;display:none;align-items:center;justify-content:center;padding:20px}.modal-content{background:white;border-radius:16px;padding:20px;max-width:600px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:var(--shadow-lg)}.invoice-header{text-align:center;border-bottom:2px solid var(--accent);padding-bottom:15px;margin-bottom:15px}.invoice-logo{width:70px;height:70px;border-radius:50%;margin:0 auto 8px}.invoice-table{width:100%;border-collapse:collapse;margin:15px 0;font-size:13px}.invoice-table th{background:var(--accent);color:white;padding:8px;text-align:left}.invoice-table td{padding:8px;border-bottom:1px solid var(--border)}.invoice-total{text-align:right;font-size:18px;font-weight:700;margin-top:10px;color:var(--green)}.invoice-bank{background:#fff7ed;border:1px solid var(--accent);padding:10px;border-radius:8px;margin-top:15px;font-size:12px;}@media print{.modal{background:white}.btn{display:none}body{padding:0}}
+.footer{background:var(--card);border-top:2px solid var(--border);padding:25px 15px;margin-top:40px;font-size:13px;}
+.footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;max-width:1000px;margin:0 auto;}
+.footer h4{margin:0 0 10px;color:var(--accent);font-size:15px;}
+.footer p{margin:5px 0;color:var(--muted);}
+.footer.bank-box{background:#fff7ed;border:1px solid var(--accent);padding:12px;border-radius:10px;margin-top:8px;}
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+
+<div class="sync-status" id="syncStatus">🟡 Connecting...</div>
+
+<div class="header">
+ <img src="https://files.catbox.moe/6t2bxr.jpg" alt="Tsholo's Atchar Co Logo" class="logo">
+  <h1>TSHOLO'S ATCHAR CO</h1>
+  <p id="headerSub">Homemade Atchar & Chilli Sauces</p>
+  <p style="font-size:12px;margin-top:5px;">Tsholo's Enterprise Service Pty Ltd</p>
+</div>
+
+<div class="container">
+
+<div class="admin-panel" id="adminPanel">
+  <h4>⚙️ Admin Controls - Firebase Sync</h4>
+  <p style="font-size:11px;color:var(--red);margin:5px 0"><b>Security:</b> Add your Firebase config below. Set Firebase Rules: <code>{ "tsholos_atchar": { ".read": true, ".write": "auth!= null" } }</code></p>
+
+  <div id="loginForm">
+    <input type="email" id="adminEmail" placeholder="Admin Email">
+    <input type="password" id="adminPassword" placeholder="Password">
+    <button class="btn btn-blue" onclick="adminLogin()">🔐 Login</button>
+  </div>
+
+  <div id="adminControls" style="display:none;margin-top:10px">
+    <p style="font-size:11px;color:var(--green);margin:5px 0">✅ Logged in</p>
+    <button class="btn-red" onclick="adminLogout()">Logout</button>
+    <button class="btn-secondary" onclick="copyClientLink()">📤 Copy Client Link</button>
+    <button class="btn-green" onclick="openInvoiceModal()">🧾 Generate Invoice</button>
+    <div class="copy-box" id="copyBox" style="display:none">
+      <input type="text" id="clientLink" readonly>
+      <button class="btn-whatsapp" onclick="shareWhatsApp()">Share</button>
+    </div>
+
+    <div style="margin-top:20px; border-top:1px solid var(--border); padding-top:15px;">
+      <h4 style="margin:0 0 10px; color:var(--purple);">✏️ Edit Products</h4>
+      <div id="productEditor"></div>
+      <button class="btn btn-green" onclick="saveProducts()">💾 Save All Changes</button>
+      <small style="display:block;margin-top:8px;color:var(--muted)">Saves to Firebase instantly</small>
+    </div>
+  </div>
+</div>
+
+<div class="section-title">🌶️ Atchar Products</div>
+<div class="grid" id="productGrid"></div>
+
+</div>
+
+<div class="cart" id="cartBox">
+  <div class="cart-header">
+    <div><b>Your Order:</b> <span id="cartItems">0 items</span></div>
+    <button class="btn-red" onclick="clearCart()">🗑️ Clear</button>
+  </div>
+  <div id="cartList"></div>
+  <div class="cart-total">Total: R<span id="cartTotal">0</span></div>
+  <button class="btn btn-whatsapp" onclick="sendWhatsAppOrder()">📱 Send Order via WhatsApp</button>
+</div>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div>
+      <h4>📞 Contact Us</h4>
+      <p>📱 Calls: 079 990 6152</p>
+      <p>💬 WhatsApp: +27 76 245 3878</p>
+      <p>📧 monashanet95@gmail.com</p>
+      <p>📍 Stand no 135 Phelindaba Street, Bothashoek, Burgersfort</p>
+      <p>🕘 Mon - Sat | 8am – 5pm</p>
+    </div>
+    <div>
+      <h4>🌶️ Our Products</h4>
+      <p>• Mixed Vegetable Atchar</p>
+      <p>• Hot Chilli Atchar</p>
+      <p>• Carrot & Chilli Atchar</p>
+      <p>• Custom Bulk Orders for Events</p>
+    </div>
+    <div>
+      <h4>🏦 Banking Details</h4>
+      <div class="bank-box">
+        <p><strong>Bank:</strong> Capitec Bank</p>
+        <p><strong>Account No:</strong> 2355129572</p>
+        <p><strong>Branch Code:</strong> 470010</p>
+        <p><strong>Account Name:</strong> Tsholo's Enterprise Service Pty Ltd</p>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:20px;color:var(--muted);font-weight:600;">
+    TASTE THE HEAT. LOVE THE FLAVOUR.
+  </div>
+</footer>
+
+<div class="modal" id="invoiceModal">
+  <div class="modal-content">
+    <h3 style="margin-top:0;color:var(--accent)">🧾 Create Invoice</h3>
+    <input type="text" id="invCustomer" placeholder="Customer Name">
+    <input type="tel" id="invPhone" placeholder="Customer Phone - 076... or 27...">
+    <input type="email" id="invEmail" placeholder="Customer Email">
+    <textarea id="invAddress" placeholder="Delivery Address" rows="2"></textarea>
+    <h4 style="margin:15px 0 8px;color:var(--purple)">Select Products:</h4>
+    <div id="invoiceProducts"></div>
+    <button class="btn btn-blue" onclick="generateInvoice()">Generate Invoice</button>
+    <button class="btn-secondary" onclick="closeInvoiceModal()">Cancel</button>
+    <div id="invoiceActions" style="display:none;margin-top:15px;border-top:2px solid var(--border);padding-top:15px">
+      <small style="color:var(--muted)">Share invoice:</small>
+      <div style="margin-top:8px">
+        <input type="tel" id="whatsappNumber" placeholder="27... for WhatsApp">
+        <button class="btn btn-whatsapp" onclick="shareInvoiceWhatsApp()">📱 Send via WhatsApp</button>
+      </div>
+      <div style="margin-top:8px">
+        <input type="email" id="emailAddress" placeholder="customer@email.com">
+        <button class="btn btn-blue" onclick="shareInvoiceEmail()">📧 Send via Email</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px">
+        <button class="btn btn-green" onclick="downloadPDF()">⬇️ Download PDF</button>
+        <button class="btn-secondary" onclick="printInvoice()">🖨️ Print Only</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="invoicePrint" style="position:absolute;left:-9999px;top:0;background:white;width:800px;padding:30px;font-family:Inter,sans-serif"></div>
+
+<script type="module">
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+import { getDatabase, ref, set, onValue } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js';
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+
+const { jsPDF } = window.jspdf;
+
+/*
+  SECURITY: Replace this with your Firebase config.
+  DO NOT share this file publicly with keys inside. Use.env on Netlify/Vercel.
+*/
+const firebaseConfig = YOUR_FIREBASE_CONFIG_HERE;
+
+const COMPANY = {
+  name: "Tsholo's Atchar Co",
+  legal: "Tsholo's Enterprise Service Pty Ltd",
+  call: "0799906152",
+  whatsapp: "27762453878", // No + for wa.me link
+  email: "monashanet95@gmail.com",
+  address: "Stand no 135 Phelindaba Street, Bothashoek, Burgersfort",
+  bank: { name: "Capitec Bank", acc: "2355129572", branch: "470010" }
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const auth = getAuth(app);
+
+const productsRef = ref(db, 'tsholos_atchar/products');
+const stockRef = ref(db, 'tsholos_atchar/stock');
+
+let cart = [];
+let currentProducts = {};
+let lastInvoiceData = null;
+const isClientMode = window.location.search.includes('client=true');
+
+if(isClientMode) {
+  document.getElementById('adminPanel').style.display = 'none';
+  document.getElementById('headerSub').innerText = 'Order via WhatsApp';
+}
+
+window.adminLogin = () => {
+  let email = document.getElementById('adminEmail').value;
+  let password = document.getElementById('adminPassword').value;
+  signInWithEmailAndPassword(auth, email, password)
+.then(() => {
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('adminControls').style.display = 'block';
+  })
+.catch(err => alert('Login failed: ' + err.message));
+}
+
+window.adminLogout = () => {
+  signOut(auth);
+  document.getElementById('loginForm').style.display = 'block';
+  document.getElementById('adminControls').style.display = 'none';
+}
+
+onAuthStateChanged(auth, user => {
+  if(!isClientMode && user) {
+    document.getElementById('loginForm').style.display = 'none';
+    document.getElementById('adminControls').style.display = 'block';
+  }
+});
+
+const defaultProducts = {
+  atchar_mixed_400g: {name:"Mixed Veg Atchar 400g",price:45,oldPrice:0,img:"https://files.catbox.moe/6t2bxr.jpg",desc:"Traditional mixed vegetable atchar<br>Medium heat. 400g jar"},
+  atchar_hot_400g: {name:"Hot Chilli Atchar 400g",price:50,oldPrice:0,img:"https://files.catbox.moe/6t2bxr.jpg",desc:"Extra hot chilli atchar<br>For chilli lovers. 400g jar"},
+  atchar_carrot_400g: {name:"Carrot & Chilli Atchar 400g",price:45,oldPrice:0,img:"https://files.catbox.moe/6t2bxr.jpg",desc:"Sweet carrot with green chilli<br>400g jar"},
+  atchar_mixed_1kg: {name:"Mixed Veg Atchar 1kg",price:95,oldPrice:110,img:"https://files.catbox.moe/6t2bxr.jpg",desc:"Family size mixed atchar<br>Best value 1kg tub"},
+  atchar_hot_1kg: {name:"Hot Chilli Atchar 1kg",price:105,oldPrice:0,img:"https://files.catbox.moe/6t2bxr.jpg",desc:"Family size hot atchar<br>1kg tub"},
+  atchar_mixed_5kg: {name:"Mixed Veg Atchar 5kg Bucket",price:420,oldPrice:0,img:"https://files.catbox.moe/6t2bxr.jpg",desc:"Catering/Bulk 5kg bucket<br>Restaurants & events"}
+};
+
+function renderProducts(products, stock) {
+  const grid = document.getElementById('productGrid');
+  grid.innerHTML = '';
+  Object.keys(products).forEach(id => {
+    const p = products[id];
+    const isOOS = stock[id];
+    grid.innerHTML += `
+      <div class="card ${isOOS?'oos':''}" id="${id}" data-id="${id}">
+        ${!isClientMode? `<button class="toggle-btn" onclick="toggleStock('${id}')">OOS</button>` : ''}
+        <img src="${p.img}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <p>${p.desc}</p>
+        <div><span class="price">R${p.price}</span> ${p.oldPrice>0?`<span class="old-price">R${p.oldPrice}</span>`:''}</div>
+        ${isClientMode &&!isOOS? `<div style="margin-top:8px">Qty: <input type="number" class="qty-input" id="qty_${id}" value="0" min="0"></div>
+        <button class="btn" onclick="addToCart('${id}','${p.name}',${p.price})">Add to Order</button>` : ''}
+      </div>
+    `;
+  });
+}
+
+onValue(productsRef, (snapshot) => {
+  currentProducts = snapshot.val();
+  if (!currentProducts) {
+    set(productsRef, defaultProducts);
+    currentProducts = defaultProducts;
+  }
+  onValue(stockRef, (stockSnap) => {
+    let stock = stockSnap.val() || {};
+    renderProducts(currentProducts, stock);
+    if(!isClientMode) buildEditor(currentProducts);
+    document.getElementById('syncStatus').innerText = '🟢 Connected';
+  });
+});
+
+function buildEditor(products) {
+  const editor = document.getElementById('productEditor');
+  let html = '';
+  Object.keys(products).forEach(id => {
+    const p = products[id];
+    html += `
+      <div style="background:#fff;padding:10px;border-radius:8px;margin-bottom:8px;border:1px solid var(--border)">
+        <b>${id}</b><br>
+        <input type="text" id="name_${id}" value="${p.name}" placeholder="Name">
+        <input type="text" id="img_${id}" value="${p.img}" placeholder="Image URL">
+        <textarea id="desc_${id}" placeholder="Description">${(p.desc||'').replace(/<br>/g,'\n')}</textarea>
+        <input type="number" id="price_${id}" value="${p.price}" placeholder="Price">
+        <input type="number" id="oldPrice_${id}" value="${p.oldPrice||''}" placeholder="Old Price">
+      </div>
+    `;
+  });
+  editor.innerHTML = html;
+}
+
+window.saveProducts = function() {
+  const updates = {};
+  Object.keys(currentProducts).forEach(id => {
+    const nameEl = document.getElementById(`name_${id}`);
+    const imgEl = document.getElementById(`img_${id}`);
+    const descEl = document.getElementById(`desc_${id}`);
+    const priceEl = document.getElementById(`price_${id}`);
+    const oldPriceEl = document.getElementById(`oldPrice_${id}`);
+    if (!nameEl) return;
+    updates[id] = {
+      name: nameEl.value,
+      img: imgEl.value,
+      desc: descEl.value.replace(/\n/g,'<br>'),
+      price: parseInt(priceEl.value) || 0,
+      oldPrice: parseInt(oldPriceEl.value) || 0
+    };
+  });
+  set(productsRef, updates)
+.then(() => alert('✅ Saved to Firebase!'))
+.catch(err => alert('Error: ' + err.message));
+}
+
+window.toggleStock = (id) => {
+  const card = document.getElementById(id);
+  const isOOS = card.classList.contains('oos');
+  set(ref(db, 'tsholos_atchar/stock/' + id),!isOOS);
+}
+
+window.addToCart = function(id, name, price) {
+  let qty = parseInt(document.getElementById(`qty_${id}`).value);
+  if(qty <= 0) { alert('Enter quantity first'); return; }
+  let existing = cart.find(item => item.id === id);
+  if(existing) {existing.qty += qty; existing.subtotal = existing.qty * price;}
+  else {cart.push({id, name, price, qty, subtotal: price * qty});}
+  updateCart();
+  document.getElementById(`qty_${id}`).value = 0;
+}
+
+function updateCart() {
+  let total = cart.reduce((sum, item) => sum + item.subtotal, 0);
+  let itemCount = cart.reduce((sum, item) => sum + item.qty, 0);
+  document.getElementById('cartItems').innerText = itemCount + ' items';
+  document.getElementById('cartTotal').innerText = total.toLocaleString();
+  document.getElementById('cartBox').style.display = cart.length > 0? 'block' : 'none';
+  let listHTML = cart.map((item, index) => `
+    <div class="cart-item">
+      <div style="flex:1"><b>${item.name}</b><br><small>${item.qty} x R${item.price.toLocaleString()} = R${item.subtotal.toLocaleString()}</small></div>
+      <button class="btn-red" onclick="removeItem(${index})">Remove</button>
+    </div>`).join('');
+  document.getElementById('cartList').innerHTML = listHTML;
+}
+
+window.removeItem = function(index) { cart.splice(index, 1); updateCart(); }
+window.clearCart = function() { if(confirm('Clear cart?')) { cart = []; updateCart(); } }
+
+window.sendWhatsAppOrder = function() {
+  if(cart.length === 0) return;
+  let total = cart.reduce((sum, item) => sum + item.subtotal, 0);
+  let orderText = `Hello ${COMPANY.name}, new order:\n\n` + cart.map(i=>`• ${i.name}\n Qty: ${i.qty} | R${i.subtotal.toLocaleString()}\n`).join('') +
+  `TOTAL: R${total.toLocaleString()}\n\nName: \nAddress: \nPhone: \n\n` +
+  `Payment Details:\n${COMPANY.bank.name}\nAcc: ${COMPANY.bank.acc}\nBranch: ${COMPANY.bank.branch}\nAcc Name: ${COMPANY.legal}`;
+  window.open(`https://wa.me/${COMPANY.whatsapp}?text=${encodeURIComponent(orderText)}`, '_blank');
+}
+
+window.copyClientLink = function() {
+  let baseUrl = window.location.href.split('?')[0];
+  let clientUrl = baseUrl + '?client=true';
+  document.getElementById('clientLink').value = clientUrl;
+  document.getElementById('copyBox').style.display = 'flex';
+  document.getElementById('clientLink').select();
+  document.execCommand('copy');
+  alert('Client link copied! Send this to customers');
+}
+
+window.shareWhatsApp = function() {
+  let clientUrl = document.getElementById('clientLink').value;
+  window.open(`https://wa.me/?text=${encodeURIComponent('Order from ' + COMPANY.name + ': ' + clientUrl)}`, '_blank');
+}
+
+window.openInvoiceModal = function() {
+  let html = '';
+  Object.keys(currentProducts).forEach(id => {
+    const p = currentProducts[id];
+    html += `<div style="margin-bottom:8px">
+      <label><input type="checkbox" id="inv_chk_${id}" data-name="${p.name}" data-price="${p.price}"> ${p.name} - R${p.price}</label>
+      <input type="number" id="inv_qty_${id}" placeholder="Qty" min="1" style="width:80px;margin-left:10px">
+    </div>`;
+  });
+  document.getElementById('invoiceProducts').innerHTML = html;
+  document.getElementById('invoiceActions').style.display = 'none';
+  document.getElementById('invoiceModal').style.display = 'flex';
+}
+
+window.closeInvoiceModal = function() {
+  document.getElementById('invoiceModal').style.display = 'none';
+  lastInvoiceData = null;
+}
+
+window.generateInvoice = function() {
+  let customer = document.getElementById('invCustomer').value;
+  let phone = document.getElementById('invPhone').value;
+  let email = document.getElementById('invEmail').value;
+  let address = document.getElementById('invAddress').value;
+  if(!customer) { alert('Enter customer name'); return; }
+
+  let items = []; let total = 0;
+  Object.keys(currentProducts).forEach(id => {
+    let chk = document.getElementById(`inv_chk_${id}`);
+    let qty = parseInt(document.getElementById(`inv_qty_${id}`).value);
+    if(chk && chk.checked && qty > 0) {
+      let name = chk.dataset.name; let price = parseInt(chk.dataset.price);
+      let subtotal = price * qty; items.push({name, qty, price, subtotal}); total += subtotal;
+    }
+  });
+  if(items.length === 0) { alert('Select at least 1 product'); return; }
+
+  let waPhone = phone.replace(/\D/g,'');
+  if(waPhone.startsWith('0')) waPhone = '27' + waPhone.substring(1);
+
+  let invNum = 'TSH' + Date.now().toString().slice(-6);
+  let date = new Date().toLocaleDateString('en-ZA');
+  lastInvoiceData = {customer, phone, email, address, items, total, invNum, date, waPhone};
+
+  document.getElementById('whatsappNumber').value = waPhone;
+  document.getElementById('emailAddress').value = email;
+  document.getElementById('invoiceActions').style.display = 'block';
+  alert('✅ Invoice ready! Click Download PDF');
+}
+
+function buildInvoiceHTML(data) {
+  let {customer, phone, address, items, total, invNum, date} = data;
+  let rows = items.map(i => `<tr><td>${i.name}</td><td>${i.qty}</td><td>R${i.price.toLocaleString()}</td><td>R${i.subtotal.toLocaleString()}</td></tr>`).join('');
+  return `
+    <div style="padding:30px;font-family:Inter,sans-serif;max-width:800px;margin:0 auto">
+      <div class="invoice-header">
+        <img src="https://files.catbox.moe/6t2bxr.jpg" class="invoice-logo">
+        <h2 style="margin:5px 0;color:var(--accent)">${COMPANY.name.toUpperCase()}</h2>
+        <p style="margin:0;font-size:12px">${COMPANY.legal}</p>
+        <p style="margin:0;font-size:12px">${COMPANY.call} | ${COMPANY.email}</p>
+        <p style="margin:0;font-size:12px">${COMPANY.address}</p>
+        <h3 style="margin:10px 0">TAX INVOICE</h3>
+      </div>
+      <div style="display:flex;justify-content:space-between;margin-bottom:20px;font-size:13px">
+        <div><b>Bill To:</b><br>${customer}<br>${phone}<br>${address}</div>
+        <div style="text-align:right"><b>Invoice #:</b> ${invNum}<br><b>Date:</b> ${date}<br><b>Status:</b> Paid/COD</div>
+      </div>
+      <table class="invoice-table"><thead><tr><th>Item</th><th>Qty</th><th>Unit Price</th><th>Amount</th></tr></thead><tbody>${rows}</tbody></table>
+      <div class="invoice-total">TOTAL: R${total.toLocaleString()}</div>
+      <div class="invoice-bank"><strong>Payment Details:</strong><br>Bank: ${COMPANY.bank.name}<br>Account Name: ${COMPANY.legal}<br>Account No: ${COMPANY.bank.acc}<br>Branch Code: ${COMPANY.bank.branch}<br><small>Use Invoice # as reference</small></div>
+      <div style="margin-top:30px;text-align:center;font-size:11px;color:var(--muted);border-top:1px solid var(--border);padding-top:10px">Thank you for your business! | ${COMPANY.name} | ${COMPANY.call}</div>
+    </div>`;
+}
+
+window.printInvoice = function() {
+  if(!lastInvoiceData) return;
+  document.getElementById('invoicePrint').innerHTML = buildInvoiceHTML(lastInvoiceData);
+  let printWindow = window.open('', '_blank');
+  printWindow.document.write(`<html><head><title>Invoice ${lastInvoiceData.invNum}</title><style>${document.querySelector('style').innerText}</style></head><body>${buildInvoiceHTML(lastInvoiceData)}</body></html>`);
+  printWindow.document.close(); printWindow.print();
+}
+
+window.downloadPDF = async function() {
+  if(!lastInvoiceData) return;
+  let {invNum, customer} = lastInvoiceData;
+  let fileName = `TsholosAtchar_Invoice_${invNum}_${customer.replace(/\s+/g,'_')}.pdf`;
+  document.getElementById('invoicePrint').innerHTML = buildInvoiceHTML(lastInvoiceData);
+  document.getElementById('syncStatus').innerText = '⏳ Creating PDF...';
+  try {
+    const canvas = await html2canvas(document.getElementById('invoicePrint'), {scale: 2, useCORS: true, backgroundColor: '#ffffff'});
+    const imgData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF('p', 'mm', 'a4');
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight); pdf.save(fileName);
+    document.getElementById('syncStatus').innerText = '🟢 Connected';
+    alert('✅ PDF Downloaded!');
+  } catch(e) {
+    document.getElementById('syncStatus').innerText = '🟢 Connected';
+    alert('Error creating PDF: ' + e.message);
+  }
+}
+
+window.shareInvoiceWhatsApp = function() {
+  if(!lastInvoiceData) return;
+  let waPhone = document.getElementById('whatsappNumber').value.replace(/\D/g,'');
+  if(!waPhone.startsWith('27')) waPhone = '27' + waPhone;
+  let {customer, items, total, invNum, date} = lastInvoiceData;
+  let itemText = items.map(i => `• ${i.name}\n Qty: ${i.qty} | R${i.subtotal.toLocaleString()}`).join('\n\n');
+  let message = `Hello ${customer}, here is your ${COMPANY.name} invoice:\n\n*Invoice #${invNum}*\nDate: ${date}\n\n${itemText}\n\n*TOTAL: R${total.toLocaleString()}*\n\nThank you for your business! 🌶️`;
+  window.open(`https://wa.me/${waPhone}?text=${encodeURIComponent(message)}`, '_blank');
+}
+
+window.shareInvoiceEmail = function() {
+  if(!lastInvoiceData) return;
+  let email = document.getElementById('emailAddress').value;
+  if(!email) { alert('Enter customer email'); return; }
+  let {customer, items, total, invNum, date, phone, address} = lastInvoiceData;
+  let itemText = items.map(i => `${i.name} - Qty: ${i.qty} x R${i.price} = R${i.subtotal}`).join('\n');
+  let subject = `${COMPANY.name} Invoice ${invNum} - R${total.toLocaleString()}`;
+  let body = `Hello ${customer},\n\nPlease find your ${COMPANY.name} invoice below:\n\nInvoice #: ${invNum}\nDate: ${date}\nPhone: ${phone}\nAddress: ${address}\n\nItems:\n${itemText}\n\nTOTAL: R${total.toLocaleString()}\n\nPayment Details:\n${COMPANY.bank.name}\nAcc: ${COMPANY.bank.acc}\nBranch: ${COMPANY.bank.branch}\nAcc Name: ${COMPANY.legal}\n\nThank you for your business!\n${COMPANY.name}\n${COMPANY.call}`;
+  window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+</script>
+</body>
+</html>
