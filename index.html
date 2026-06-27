@@ -149,7 +149,15 @@ const { jsPDF } = window.jspdf;
   SECURITY: Replace this with your Firebase config.
   DO NOT share this file publicly with keys inside. Use.env on Netlify/Vercel.
 */
-const firebaseConfig = YOUR_FIREBASE_CONFIG_HERE;
+const firebaseConfig = {
+  apiKey: "AIzaSy...",
+  authDomain: "tsholos-atchar.firebaseapp.com",
+  databaseURL: "https://tsholos-atchar-default-rtdb.firebaseio.com",
+  projectId: "tsholos-atchar",
+  storageBucket: "tsholos-atchar.firebasestorage.app",
+  messagingSenderId: "123...",
+  appId: "1:123..."
+};
 
 const COMPANY = {
   name: "Tsholo's Atchar Co",
